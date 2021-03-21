@@ -1,0 +1,47 @@
+tmux是terminal multiplexer的缩写，方便用户在一个终端 (terminal) 中打开多个虚拟控制台（virtual console），在远程登录服务器时非常有用，可以避免登录多个会话，并且可以在退出会话时不中断终端运行的程序，下次登录服务器时仍可切换至上次工作的会话终端。
+
+# 安装
+      sudo apt-get install tmux
+# 开启
+      tmux
+# detach会话
+      tmux detach
+      Ctrl-b d
+# attach会话
+      tmux attach
+# 完全退出会话
+      exit
+
+基本命令：
+Ctrl-b c   创建新窗口
+Ctrl-b n  切换至下一个窗口
+Ctrl-b p  切换至上一个窗口
+Ctrl-b l    切换至上一次选中的窗口
+Ctrl-b w  列出所有窗口
+Ctrl-b 0-9 快速切换至编号0-9的窗口
+Ctrl-b ， 重命名窗口名
+Ctrl-b :  <command> 打开命令交互窗口，输入命令，例如 list-windows, split-window
+Ctrl-b f    输入关键词查找窗口，可以是任何窗口中输出的关键字，也可以直接回车，通过上下键选择
+Ctrl-b ?   列出当前所有快捷键（keybindings）
+
+多窗格（pane）命令：
+Ctrl-b % 竖分屏
+Ctrl-b : “split-window” 输入横分屏窗口
+Ctrl-b o  切换至下一个窗格（pane）
+Ctrl-b q  显示窗格编号，编号显示后输入对应编号切换至相应panel
+Ctrl-b {    往左移动窗格
+Ctrl-b }    向右移动窗格
+Ctrl-b <space>  快速切换窗格布局 
+Ctrl-b : "break-pane"  移动窗口到独立窗口并激活，通过 -d 选项保持当前窗口激活  
+
+横竖分屏命令不是很直观，可以重新绑定到新的快捷键，比如 Ctrl-b | 和Ctrl-b -，编辑~/.tmux.conf输入以下命令即可：
+  unbind %                                             
+  bind | split-window -h                                           
+  bind - split-window -v
+
+如果要查看终端输出的历史信息，通过 Ctrl-[ 进入编辑模式，通过方向键控制光标
+也可以在 ~/.tmux.conf 加入以下命令打开通过鼠标滚轮直接进入编辑模式：
+   setw -g mode-mouse on
+
+
+
